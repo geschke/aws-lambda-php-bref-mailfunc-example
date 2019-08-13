@@ -1,0 +1,18 @@
+{
+    "require": {
+        "bref/bref": "^0.5.0",
+        "google/recaptcha": "^1.2",
+        "phpmailer/phpmailer": "^6.0",
+        "slim/slim": "^4.1",
+        "monolog/monolog": "^1.24",
+        "guzzlehttp/psr7": "^1.6",
+        "http-interop/http-factory-guzzle": "^1.0",
+        "php-di/php-di": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "Geschkenet\\":"src/geschkenet"
+        }
+      }
+
+}

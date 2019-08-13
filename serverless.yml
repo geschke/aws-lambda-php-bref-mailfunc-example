@@ -1,0 +1,36 @@
+service: mailfuncsrv # service name
+
+provider:
+    name: aws
+    region: eu-central-1 # set to FFM, Germany
+    runtime: provided
+    stage: prod
+
+plugins:
+    - ./vendor/bref/bref
+
+functions:
+    gnmailfunc:
+        handler: index.php # Slim application entry point
+        description: ''
+        timeout: 30 # in seconds (API Gateway has a timeout of 30 seconds)
+        layers:
+            - ${bref:layer.php-73-fpm}
+        events:
+            -   http: 'ANY /' # catch-all routing
+            -   http: 'ANY /{proxy+}'
+        environment:
+            ENV_FROM_MAIL: 'info@geschke.net'
+            ENV_REPLY_TO_MAIL: 'info@geschke.net'
+            ENV_FROM_NAME: 'geschke.net Feedback'
+            ENV_SUBJECT: 'Feedback geschke.net'
+            ENV_TO_MAIL: 'info@geschke.net'
+            ENV_TO_NAME: 'Ralf Geschke'
+            ENV_REPLY_TO_NAME: 'Feedback geschke.net'
+            ENV_SMTP_HOST: 'email-smtp.eu-west-1.amazonaws.com'
+            ENV_SMTP_USER: ${ssm:/mailfuncsrv/smtp-username}
+            ENV_SMTP_PASSWORD: ${ssm:/mailfuncsrv/smtp-password}
+            ENV_RECAPTCHA_HOST: 'gohlis.geschke.net'
+            ENV_RECAPTCHA_SECRET: ${ssm:/mailfuncsrv/recaptcha-secret}
+            
+
