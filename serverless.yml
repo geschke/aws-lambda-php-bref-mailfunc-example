@@ -5,6 +5,7 @@ provider:
     region: eu-central-1 # set to FFM, Germany
     runtime: provided
     stage: prod
+    memorySize: 512
 
 plugins:
     - ./vendor/bref/bref
