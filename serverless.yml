@@ -30,7 +30,7 @@ functions:
             ENV_SMTP_HOST: 'email-smtp.eu-west-1.amazonaws.com'
             ENV_SMTP_USER: ${ssm:/mailfuncsrv/smtp-username}
             ENV_SMTP_PASSWORD: ${ssm:/mailfuncsrv/smtp-password}
-            ENV_RECAPTCHA_HOST: 'gohlis.geschke.net'
+            ENV_RECAPTCHA_HOST: 'www.geschke.net'
             ENV_RECAPTCHA_SECRET: ${ssm:/mailfuncsrv/recaptcha-secret}
             
 
